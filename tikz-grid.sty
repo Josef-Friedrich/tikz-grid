@@ -1,6 +1,9 @@
-\usepackage{tikz}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tikz-grid}[2020/07/14 Draw a grid and show the coordinates in TikZ]
+\RequirePackage{tikz}
 
-\makeatletter
+% https://tex.stackexchange.com/a/39698/42311
+
 \def\grd@save@target#1{%
   \def\grd@target{#1}}
 \def\grd@save@start#1{%
@@ -24,24 +27,25 @@
         \pgfmathsetmacro{\grd@xc}{\grd@xa + \pgfkeysvalueof{/tikz/grid with coordinates/major step}}
         \pgfmathsetmacro{\grd@yc}{\grd@ya + \pgfkeysvalueof{/tikz/grid with coordinates/major step}}
         \foreach \x in {\grd@xa,\grd@xc,...,\grd@xb}
-        \node[anchor=north] at (\x,\grd@ya) {\pgfmathprintnumber{\x}};
+        \node[anchor=north,font=\scriptsize] at (\x,\grd@ya) {$\pgfmathprintnumber{\x}$};
         \foreach \y in {\grd@ya,\grd@yc,...,\grd@yb}
-        \node[anchor=east] at (\grd@xa,\y) {\pgfmathprintnumber{\y}};
+        \node[anchor=east,font=\scriptsize] at (\grd@xa,\y) {$\pgfmathprintnumber{\y}$};
       }
     }
   },
   minor help lines/.style={
     help lines,
-    step=\pgfkeysvalueof{/tikz/grid with coordinates/minor step}
+    step=\pgfkeysvalueof{/tikz/grid with coordinates/minor step},
+    color=gray!30,
   },
   major help lines/.style={
     help lines,
     line width=\pgfkeysvalueof{/tikz/grid with coordinates/major line width},
-    step=\pgfkeysvalueof{/tikz/grid with coordinates/major step}
+    step=\pgfkeysvalueof{/tikz/grid with coordinates/major step},
+    color=gray!30,
   },
   grid with coordinates/.cd,
   minor step/.initial=.2,
   major step/.initial=1,
   major line width/.initial=0.8pt,
 }
-\makeatother
