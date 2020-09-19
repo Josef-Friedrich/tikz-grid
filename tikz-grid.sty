@@ -27,22 +27,22 @@
         \pgfmathsetmacro{\grd@xc}{\grd@xa + \pgfkeysvalueof{/tikz/grid with coordinates/major step}}
         \pgfmathsetmacro{\grd@yc}{\grd@ya + \pgfkeysvalueof{/tikz/grid with coordinates/major step}}
         \foreach \x in {\grd@xa,\grd@xc,...,\grd@xb}
-        \node[anchor=north,font=\scriptsize] at (\x,\grd@ya) {$\pgfmathprintnumber{\x}$};
+        \node[anchor=north,font=\scriptsize] at (\x,\grd@ya) {\pgfmathprintnumber{\x}};
         \foreach \y in {\grd@ya,\grd@yc,...,\grd@yb}
-        \node[anchor=east,font=\scriptsize] at (\grd@xa,\y) {$\pgfmathprintnumber{\y}$};
+        \node[anchor=east,font=\scriptsize] at (\grd@xa,\y) {\pgfmathprintnumber{\y}};
       }
     }
   },
   minor help lines/.style={
     help lines,
     step=\pgfkeysvalueof{/tikz/grid with coordinates/minor step},
-    color=gray!30,
+    color=blue!30,
   },
   major help lines/.style={
     help lines,
     line width=\pgfkeysvalueof{/tikz/grid with coordinates/major line width},
     step=\pgfkeysvalueof{/tikz/grid with coordinates/major step},
-    color=gray!30,
+    color=blue!30,
   },
   grid with coordinates/.cd,
   minor step/.initial=.2,
